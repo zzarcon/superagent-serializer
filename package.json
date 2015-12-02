@@ -1,0 +1,30 @@
+{
+  "name": "superagent-serializer",
+  "version": "0.1.0",
+  "description": "Superagent plugin to serialize response data into different types",
+  "main": "index.js",
+  "scripts": {
+    "browser": "browserify example.js -s superagentSerializer -t babelify --outfile bundle.js",
+    "watch": "watchify example/index.js -o example/bundle.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zzarcon/superagent-serializer.git"
+  },
+  "author": "zzarcon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zzarcon/superagent-serializer/issues"
+  },
+  "homepage": "https://github.com/zzarcon/superagent-serializer",
+  "dependencies": {
+    "normalize-object": "^1.1.3"
+  },
+  "devDependencies": {
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.1",
+    "superagent": "^1.4.0",
+    "watchify": "^3.6.1"
+  }
+}
