@@ -1,20 +1,24 @@
 var normalize = require('normalize-object');
+var validTypes = ['upper', 'lower', 'snake', 'pascal', 'camel', 'kebab', 'constant', 'title', 'capital', 'sentence'];
 
 /**
- * Docs...
+ * Wrapps Superagent and returns a serialized response
  * @param  {Object} superagent 
  * @param  {String} type       
  * @return {void}
  */
 function serializer(superagent, type) {
-  //TODO: Check arguments size
-  //TODO: Validate arguments
+  if (arguments.length < 2) {
+    throw new Error("superagent-serializer: expects 2 params");
+  }
+  if (validTypes.indexOf(type) === -1) {
+    throw new Error("superagent-serializer: the passed type don't exist"); 
+  }
 
   var Request = superagent.Request;
   var end = Request.prototype.end;
 
   Request.prototype.end = function(cb) {
-    console.log('mock end');
     return end.call(this, function(err, res) {
       if (typeof cb !== 'function') return;
 
@@ -29,8 +33,6 @@ function serializer(superagent, type) {
 
       cb(err, serializedRes);
     });
-
-    // return end.apply(this, arguments);
   };
 }
 
