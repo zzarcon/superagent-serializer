@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/superagent-serializer.svg)](https://badge.fury.io/js/superagent-serializer)
+
 # superagent-serializer
 > Superagent plugin to convert server payload into different cases
 
