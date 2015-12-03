@@ -6,7 +6,9 @@
   "scripts": {
     "browser": "browserify example.js -s superagentSerializer -t babelify --outfile bundle.js",
     "watch": "watchify example/index.js -o example/bundle.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "amend": "git add . && git commit --amend --reuse-message=HEAD",
+    "push": "git push --tags && git push",
+    "release": "npm version patch --force && npm run amend && npm run push && npm publish"
   },
   "repository": {
     "type": "git",
