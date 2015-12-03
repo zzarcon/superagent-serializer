@@ -1,7 +1,7 @@
 # superagent-serializer
-> Superagent plugin to serialize response data into different types
+> Superagent plugin to convert server payload into different cases
 
-[superagent](https://github.com/visionmedia/superagent) plugin to serialize request responses using predefined types.
+[superagent](https://github.com/visionmedia/superagent) plugin that brings you the hability of convert your server payload into different cases
 
 # Installation
 
@@ -12,9 +12,8 @@
 Having the following response
 ```json
 {
-  "name": "Hector",
-  "last_name": "Zarco",
-  "full-name": "Hector Zarco"
+  "first_name": "Hector",
+  "last-name": "Zarco"
 }
 ```
 
@@ -25,7 +24,7 @@ var serializer = require('superagent-serializer');
 serializer(request, 'camel');
 
 request.get('data.json').send().end(function(err, res) {
-  console.log(res);
+  console.log(res.firstName + ' ' + res.lastName);
 });
 
 ```
@@ -34,9 +33,19 @@ This will convert the output into
 
 ```json
 {
-  "name": "Hector",
-  "lastName": "Zarco",
-  "fullName": "Hector Zarco"
+  "firstName": "Zarco",
+  "lastName": "Hector Zarco"
 }
 
 ```
+
+# Cases
+  - **upper** : `foo_bar` -> `FOO BAR`
+  - **lower** : `fooBar` -> `foo bar`
+  - **snake** : `Foo bar!` -> `foo_bar`
+  - **pascal** : `foo.bar` -> `FooBar`
+  - **camel** : `foo, bar` -> `fooBar`
+  - **kebab** : `Foo? Bar.` -> `foo-bar`
+  - **constant** : `Foo-Bar` -> `FOO_BAR`
+  - **title** : `foo v. bar` -> `Foo v. Bar`
+  - **capital** : `foo_v_bar` -> `Foo V Bar`

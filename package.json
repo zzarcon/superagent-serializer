@@ -4,6 +4,7 @@
   "description": "Superagent plugin to serialize response data into different types",
   "main": "index.js",
   "scripts": {
+    "start": "npm run watch",
     "browser": "browserify example.js -s superagentSerializer -t babelify --outfile bundle.js",
     "watch": "watchify example/index.js -o example/bundle.js",
     "amend": "git add . && git commit --amend --reuse-message=HEAD",
