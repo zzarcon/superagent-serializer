@@ -12,7 +12,7 @@ function serializer(superagent, type) {
     throw new Error("superagent-serializer: expects 2 params");
   }
   if (validTypes.indexOf(type) === -1) {
-    throw new Error("superagent-serializer: the passed type don't exist"); 
+    throw new Error("superagent-serializer: the passed type don't exist");
   }
 
   var Request = superagent.Request;
@@ -28,7 +28,9 @@ function serializer(superagent, type) {
         serializedRes = JSON.parse(res.text);
         serializedRes = normalize(serializedRes, type);
       } catch (e) {
-        serializedRes = res.text;
+        if (typeof res !== 'undefined') {
+          serializedRes = res.text;
+        }
       }
 
       cb(err, serializedRes);
